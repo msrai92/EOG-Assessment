@@ -19,7 +19,6 @@ const MetricCards = (props) => {
   if (!loading) {
     props.setMetric(data.newMeasurement, data.newMeasurement.metric);
   }
-  console.log(metricSelected);
   return (
     <div className="card-grid">
       {metricSelected.map((name) => (

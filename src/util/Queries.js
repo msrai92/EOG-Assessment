@@ -38,3 +38,17 @@ query ($metricName: String!) {
   }
 }
 `;
+
+export const GET_MULTIPLE_DATA = gql`
+  query ($input: [MeasurementQuery!]) {
+    getMultipleMeasurements(input: $input) {
+      metric,
+      measurements {
+        metric,
+        at,
+        value,
+        unit
+      }
+    }
+  }
+`;

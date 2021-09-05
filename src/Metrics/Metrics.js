@@ -13,6 +13,7 @@ import { without } from 'lodash';
 import { GET_METRIC_TYPE } from '../util/Queries';
 import SelectDropDown from '../elements/SelectDropDown';
 import MetricCards from './MetricCards';
+import MetricGraph from './MetricGraph';
 import './metric.css';
 
 const httpLink = new HttpLink({
@@ -83,6 +84,7 @@ const Metrics = () => {
               metricSelected={metricSelected}
             />
             <MetricCards metricSelected={metricSelected} />
+            <MetricGraph metricSelected={metricSelected} />
           </div>
           )}
         </>
