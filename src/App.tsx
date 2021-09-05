@@ -15,6 +15,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import Header from './components/Header';
 import Wrapper from './components/Wrapper';
 import Metrics from './Metrics/Metrics';
+import Graph from './Metrics/Graph';
 import store from './store';
 
 const wsLink = new WebSocketLink({
@@ -65,6 +66,7 @@ const App = () => (
       <Provider store={store}>
         <ApolloProvider client={client}>
           <Metrics />
+          <Graph />
         </ApolloProvider>
       </Provider>
     </Wrapper>

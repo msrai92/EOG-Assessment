@@ -53,7 +53,7 @@ export const setMetric = (data, type) => async dispatch => {
 };
 
 export const setGraphData = (data) => async dispatch => {
-  const arr = {};
+  const arr = [];
   for (let i = 0; i < data.length; i += 1) {
     const mapped = _.map(data[i].measurements, (obj) => ({
       metric: obj.metric,
@@ -61,7 +61,11 @@ export const setGraphData = (data) => async dispatch => {
       unit: obj.unit,
       time: obj.at,
     }));
-    arr[data[i].metric] = mapped;
+    const metricObj = {
+      metric: data[i].metric,
+      values: mapped,
+    };
+    arr.push(metricObj);
   }
   dispatch({
     type: SET_GRAPH_DATA,

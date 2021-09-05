@@ -7,6 +7,7 @@ import {
   split,
   HttpLink,
 } from '@apollo/client';
+import { connect } from 'react-redux';
 import { getMainDefinition } from 'apollo-utilities';
 import { WebSocketLink } from '@apollo/client/link/ws';
 import { without } from 'lodash';
@@ -72,29 +73,27 @@ const Metrics = () => {
   }, [typesData]);
 
   return (
-    <div className="container">
-      {!typesError && (
-        <>
-          {!typesLoading && (
-          <div className="metric-container">
-            <SelectDropDown
-              handleChange={handleChange}
-              handleDelete={handleDelete}
-              metricTypes={metricTypes}
-              metricSelected={metricSelected}
-            />
-            <MetricCards metricSelected={metricSelected} />
-            <MetricGraph metricSelected={metricSelected} />
-          </div>
-          )}
-        </>
-      )}
-    </div>
+    <ApolloProvider client={client}>
+      <div className="container">
+        {!typesError && (
+          <>
+            {!typesLoading && (
+            <div className="metric-container">
+              <SelectDropDown
+                handleChange={handleChange}
+                handleDelete={handleDelete}
+                metricTypes={metricTypes}
+                metricSelected={metricSelected}
+              />
+              <MetricCards metricSelected={metricSelected} />
+              <MetricGraph metricSelected={metricSelected} />
+            </div>
+            )}
+          </>
+        )}
+      </div>
+    </ApolloProvider>
   );
 };
 
-export default () => (
-  <ApolloProvider client={client}>
-    <Metrics />
-  </ApolloProvider>
-);
+export default connect(null, null)(Metrics);

@@ -24,3 +24,8 @@
     grid-gap: 1rem;
     padding: 15px;
 }
+
+.graph-container {
+    width: 100vw;
+    min-height: 50vh;
+}
