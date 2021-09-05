@@ -9,12 +9,12 @@ import {
   InputBase,
 } from '@material-ui/core';
 import CancelIcon from '@material-ui/icons/Cancel';
+import '../Metrics/metric.css';
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
     margin: theme.spacing(1),
-    minWidth: 300,
-    maxWidth: 500,
+    paddingRight: 20,
   },
   chips: {
     display: 'flex',
@@ -82,8 +82,8 @@ const SelectDropDown = (props) => {
   } = props;
   const classes = useStyles();
   return (
-    <div>
-      <FormControl className={classes.formControl}>
+    <div className="dropdown-container">
+      <FormControl fullWidth className={classes.formControl}>
         <InputLabel id="select-metric-label">Select Metric...</InputLabel>
         <Select
           labelId="select-metric"

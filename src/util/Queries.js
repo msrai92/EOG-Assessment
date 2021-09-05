@@ -27,3 +27,14 @@ export const GET_METRIC_DATA_SUB = gql`
     }
   }
 `;
+
+export const GET_LAST_KNOWN_METRIC = gql`
+query ($metricName: String!) {
+  getLastKnownMeasurement(metricName: $metricName) {
+    metric,
+    at,
+    value,
+    unit
+  }
+}
+`;
