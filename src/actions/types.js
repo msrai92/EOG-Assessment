@@ -5,3 +5,4 @@ export const SET_TUBING_PRESSURE = 'SET_TUBING_PRESSURE';
 export const SET_FLARE_TEMP = 'SET_FLARE_TEMP';
 export const SET_OIL_TEMP = 'SET_OIL_TEMP';
 export const SET_WATER_TEMP = 'SET_WATER_TEMP';
+export const SET_GRAPH_DATA = 'SET_GRAPH_DATA';

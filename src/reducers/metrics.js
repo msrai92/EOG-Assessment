@@ -5,6 +5,7 @@ import {
   SET_FLARE_TEMP,
   SET_OIL_TEMP,
   SET_WATER_TEMP,
+  SET_GRAPH_DATA,
 } from '../actions/types';
 
 const initialState = {
@@ -14,6 +15,7 @@ const initialState = {
   flareTemp: {},
   oilTemp: {},
   waterTemp: {},
+  graphData: {},
 };
 
 export default function (state = initialState, action) {
@@ -45,6 +47,11 @@ export default function (state = initialState, action) {
       return {
         ...state,
         waterTemp: payload,
+      };
+    case SET_GRAPH_DATA:
+      return {
+        ...state,
+        graphData: payload,
       };
     default:
       return state;

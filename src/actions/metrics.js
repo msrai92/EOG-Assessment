@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import {
   SET_CASING_PRESSURE,
   SET_INJ_VALVE_OPEN,
@@ -5,6 +6,7 @@ import {
   SET_FLARE_TEMP,
   SET_OIL_TEMP,
   SET_WATER_TEMP,
+  SET_GRAPH_DATA,
 } from './types';
 
 export const setMetric = (data, type) => async dispatch => {
@@ -48,4 +50,21 @@ export const setMetric = (data, type) => async dispatch => {
     default:
       break;
   }
+};
+
+export const setGraphData = (data) => async dispatch => {
+  const arr = {};
+  for (let i = 0; i < data.length; i += 1) {
+    const mapped = _.map(data[i].measurements, (obj) => ({
+      metric: obj.metric,
+      value: obj.value,
+      unit: obj.unit,
+      time: obj.at,
+    }));
+    arr[data[i].metric] = mapped;
+  }
+  dispatch({
+    type: SET_GRAPH_DATA,
+    payload: arr,
+  });
 };

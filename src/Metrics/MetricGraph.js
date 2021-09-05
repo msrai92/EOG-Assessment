@@ -1,17 +1,23 @@
 import React, { useEffect, useState } from 'react';
-import { connect } from 'react-redux';
+import { connect, useSelector } from 'react-redux';
 import { useQuery } from '@apollo/client';
 import { GET_MULTIPLE_DATA } from '../util/Queries';
+import { setGraphData } from '../actions/metrics';
 
 const MetricGraph = (props) => {
   const { metricSelected } = props;
   const [input, setInput] = useState([]);
+  const [graphData, setGraph] = useState({});
   useEffect(() => {
     const arr = metricSelected.map((name) => ({
       metricName: name,
     }));
     setInput(arr);
   }, [metricSelected]);
+  const grphData = useSelector(state => state.metrics.graphData);
+  useEffect(() => {
+    setGraph(grphData);
+  }, graphData);
   const {
     error,
     loading,
@@ -21,6 +27,9 @@ const MetricGraph = (props) => {
       input,
     },
   });
+  if (!loading) {
+    props.setGraphData(data.getMultipleMeasurements);
+  }
   console.log(error);
   console.log(loading);
   console.log('graph data: ', data);
@@ -31,4 +40,4 @@ const MetricGraph = (props) => {
   );
 };
 
-export default connect(null, null)(MetricGraph);
+export default connect(null, { setGraphData })(MetricGraph);
