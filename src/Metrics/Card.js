@@ -1,12 +1,14 @@
 import React from 'react';
 import { useSubscription } from '@apollo/client';
 import { makeStyles } from '@material-ui/core/styles';
+import { connect } from 'react-redux';
 import {
   Card,
   CardHeader,
   CardContent,
   Typography,
 } from '@material-ui/core';
+import { setMetric } from '../actions/metrics';
 import { GET_METRIC_DATA_SUB } from '../util/Queries';
 
 const useStyles = makeStyles(() => ({
@@ -28,7 +30,7 @@ const CustomCard = (props) => {
   console.log('SubData ', subData);
   if (!subLoading) {
     if (subData.newMeasurement.metric === name) {
-      console.log(subData.newMeasurement.value);
+      props.setMetric(subData.newMeasurement);
     }
   }
   return (
@@ -49,4 +51,4 @@ const CustomCard = (props) => {
   );
 };
 
-export default CustomCard;
+export default connect(null, { setMetric })(CustomCard);

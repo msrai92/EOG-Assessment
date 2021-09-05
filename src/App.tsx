@@ -9,11 +9,13 @@ import {
 } from '@apollo/client';
 import { WebSocketLink } from '@apollo/client/link/ws';
 import { getMainDefinition } from 'apollo-utilities';
+import { Provider } from 'react-redux';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import 'react-toastify/dist/ReactToastify.css';
 import Header from './components/Header';
 import Wrapper from './components/Wrapper';
 import Metrics from './Metrics/Metrics';
+import store from './store';
 
 const wsLink = new WebSocketLink({
   uri: 'ws://react.eogresources.com/graphql',
@@ -60,9 +62,11 @@ const App = () => (
     <CssBaseline />
     <Wrapper>
       <Header />
-      <ApolloProvider client={client}>
-        <Metrics />
-      </ApolloProvider>
+      <Provider store={store}>
+        <ApolloProvider client={client}>
+          <Metrics />
+        </ApolloProvider>
+      </Provider>
     </Wrapper>
   </MuiThemeProvider>
 );
